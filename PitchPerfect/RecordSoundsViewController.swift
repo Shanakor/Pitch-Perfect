@@ -16,6 +16,10 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate{
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var stopRecordingButton: UIButton!
 
+    struct Segues{
+        static let stopRecordingSegue = "stopRecording"
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         stopRecordingButton.isEnabled = false
@@ -53,7 +57,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate{
     
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
         if flag{
-            performSegue(withIdentifier: "stopRecording", sender: audioRecorder.url)
+            performSegue(withIdentifier: Segues.stopRecordingSegue, sender: audioRecorder.url)
         }
         else{
             print("recording was not successful")
@@ -61,7 +65,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate{
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "stopRecording" {
+        if segue.identifier == Segues.stopRecordingSegue {
             let playSoundsVC = segue.destination as! PlaySoundsViewController
             let recordedAudioURL = sender as! URL
             playSoundsVC.recordedAudioURL = recordedAudioURL
