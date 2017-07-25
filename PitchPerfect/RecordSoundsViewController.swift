@@ -23,13 +23,6 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate{
     
     enum RecordingState{ case recording, notRecording }
     
-    // MARK: System Events
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        configureUI(recordingState: .notRecording)
-    }
-    
     // MARK: UI Actions
     @IBAction func recordAudio(_ sender: Any) {
         configureUI(recordingState: .recording)
