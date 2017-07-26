@@ -35,20 +35,37 @@ class PlaySoundsViewController: UIViewController {
         setupAudio()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        configureUI(.notPlaying)
-    }
-    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         stopButtonPressed(self)
     }
     
+    // MARK: UI Functions
+    func configureUI(_ playState: PlayingState) {
+        switch(playState) {
+        case .playing:
+            setPlayButtonsEnabled(false)
+            stopButton.isEnabled = true
+        case .notPlaying:
+            setPlayButtonsEnabled(true)
+            stopButton.isEnabled = false
+        }
+    }
+    
+    func setPlayButtonsEnabled(_ enabled: Bool) {
+        slowButton.isEnabled = enabled
+        highPitchButton.isEnabled = enabled
+        fastButton.isEnabled = enabled
+        lowPitchButton.isEnabled = enabled
+        echoButton.isEnabled = enabled
+        reverbButton.isEnabled = enabled
+    }
+    
     // MARK: UI Actions
     @IBAction func playSoundForButton(_ sender: UIButton) {
+        configureUI(.playing)
+
         switch(ButtonType(rawValue: sender.tag)!) {
         case .slow:
             playSound(rate: 0.5)
@@ -63,11 +80,10 @@ class PlaySoundsViewController: UIViewController {
         case .reverb:
             playSound(reverb: true)
         }
-        
-        configureUI(.playing)
     }
     
     @IBAction func stopButtonPressed(_ sender: AnyObject) {
         stopAudio()
+        configureUI(.notPlaying)
     }
 }
