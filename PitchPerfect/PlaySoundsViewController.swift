@@ -42,15 +42,9 @@ class PlaySoundsViewController: UIViewController {
     }
     
     // MARK: UI Functions
-    func configureUI(_ playState: PlayingState) {
-        switch(playState) {
-        case .playing:
-            setPlayButtonsEnabled(false)
-            stopButton.isEnabled = true
-        case .notPlaying:
-            setPlayButtonsEnabled(true)
-            stopButton.isEnabled = false
-        }
+    func configureUI(isPlaying: Bool) {
+        setPlayButtonsEnabled(!isPlaying)
+        stopButton.isEnabled = isPlaying
     }
     
     func setPlayButtonsEnabled(_ enabled: Bool) {
@@ -64,7 +58,7 @@ class PlaySoundsViewController: UIViewController {
     
     // MARK: UI Actions
     @IBAction func playSoundForButton(_ sender: UIButton) {
-        configureUI(.playing)
+        configureUI(isPlaying: true)
 
         switch(ButtonType(rawValue: sender.tag)!) {
         case .slow:
@@ -84,6 +78,6 @@ class PlaySoundsViewController: UIViewController {
     
     @IBAction func stopButtonPressed(_ sender: AnyObject) {
         stopAudio()
-        configureUI(.notPlaying)
+        configureUI(isPlaying: false)
     }
 }
