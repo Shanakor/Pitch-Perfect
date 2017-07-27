@@ -21,6 +21,12 @@ class RecordSoundsViewController: UIViewController{
         static let stopRecordingSegue = "stopRecording"
     }
     
+    struct Alerts{
+        static let recordingErrorTitle = "Recording failed!"
+        static let recordingErrorMsg = "For some reason, the recording failed."
+        static let recordingErrorActionName = "Ok"
+    }
+    
     // MARK: UI Actions
     @IBAction func recordAudio(_ sender: Any) {
         configureUI(isRecording: true)
@@ -56,10 +62,20 @@ class RecordSoundsViewController: UIViewController{
         try! audioSession.setActive(false)
     }
     
+    // MARK: UI Functions
     func configureUI(isRecording: Bool){
         recordingLabel.text = isRecording ? "Recording in Progress" : "Tap to Record"
         recordButton.isEnabled = !isRecording
         stopRecordingButton.isEnabled = isRecording
+    }
+    
+    fileprivate func showRecordingErrorAlert(){
+        let alertController = UIAlertController(title: Alerts.recordingErrorTitle, message: Alerts.recordingErrorMsg, preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: Alerts.recordingErrorActionName, style: .default, handler: nil)
+        alertController.addAction(action)
+        
+        self.present(alertController, animated: true, completion: nil)
     }
     
     // MARK: Navigation
@@ -79,7 +95,7 @@ extension RecordSoundsViewController : AVAudioRecorderDelegate{
             performSegue(withIdentifier: Segues.stopRecordingSegue, sender: audioRecorder.url)
         }
         else{
-            print("recording was not successful")
+            showRecordingErrorAlert()
         }
     }
 }
