@@ -21,11 +21,9 @@ class RecordSoundsViewController: UIViewController{
         static let stopRecordingSegue = "stopRecording"
     }
     
-    enum RecordingState{ case recording, notRecording }
-    
     // MARK: UI Actions
     @IBAction func recordAudio(_ sender: Any) {
-        configureUI(recordingState: .recording)
+        configureUI(isRecording: true)
         
         recordAudio()
     }
@@ -47,7 +45,7 @@ class RecordSoundsViewController: UIViewController{
     }
 
     @IBAction func stopRecording(_ sender: Any) {
-        configureUI(recordingState: .notRecording)
+        configureUI(isRecording: false)
         
         stopRecording()
     }
@@ -58,17 +56,10 @@ class RecordSoundsViewController: UIViewController{
         try! audioSession.setActive(false)
     }
     
-    func configureUI(recordingState state: RecordingState){
-        if state == .recording{
-            recordingLabel.text = "Recording in Progress"
-            recordButton.isEnabled = false
-            stopRecordingButton.isEnabled = true
-        }
-        else{
-            recordingLabel.text = "Tap to Record"
-            recordButton.isEnabled = true
-            stopRecordingButton.isEnabled = false
-        }
+    func configureUI(isRecording: Bool){
+        recordingLabel.text = isRecording ? "Recording in Progress" : "Tap to Record"
+        recordButton.isEnabled = !isRecording
+        stopRecordingButton.isEnabled = isRecording
     }
     
     // MARK: Navigation
