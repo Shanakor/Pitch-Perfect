@@ -10,6 +10,9 @@ The learning goal of this app was to learn the basic handling of UIKit component
 * Navigation between scenes
 * Adaptation of the user interface to fit different device sizes (like iPads and landscape orientation)
 
+## Screenshots
+![](Pitch-Perfect/01 start.png?raw=true)
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
