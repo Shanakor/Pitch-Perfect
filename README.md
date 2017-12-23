@@ -22,6 +22,10 @@ What things you need to install the software and how to install them
 You need an XCode version that is capable of supporting Swift4.0.
 ```
 
+## Built With
+
+/There were no external libraries used for this project./
+
 ## Authors
 
 * **Niklas Rammerstorfer** - *Initial work* - [Shanakor](https://github.com/Shanakor)
