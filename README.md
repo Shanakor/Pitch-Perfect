@@ -5,7 +5,7 @@ This is the first of a five part series of sample apps created for [Udacity's Na
 With Pitch Perfect you can record your own voice and then play it back with funny modifications. Amongst others 2x speed, 0.5x speed, dark pitched or high pitched.
 
 The gist of the app had already been created (the recording and playing of voices) to be able to focus on the learning goal.
-The learning goal of this app was to learn the basic handling of UIKit components. This includes:
+The learning goal of this app was to learn the basic handling of __UIKit components__. This includes:
 
 * Navigation between scenes
 * Adaptation of the user interface to fit different device sizes (like iPads and landscape orientation)
@@ -19,11 +19,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
-
-```
-You need an XCode version that is capable of supporting Swift4.0.
-```
+* XCode version that is capable of supporting Swift 4.0
 
 ## Built With
 
