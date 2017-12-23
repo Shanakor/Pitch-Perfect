@@ -11,7 +11,7 @@ The learning goal of this app was to learn the basic handling of UIKit component
 * Adaptation of the user interface to fit different device sizes (like iPads and landscape orientation)
 
 ## Screenshots
-![](Pitch-Perfect/01 start.png?raw=true)
+<img src="01.png" width="200"/> <img src="02.png" width="200"/> <img src="03.png" width="200"/>
 
 ## Getting Started
 
